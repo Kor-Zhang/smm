@@ -3,28 +3,30 @@ package com.zk.smm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.zk.smm.bean.Items;
 
 /**
- * Title:ItemsHandlerController0
+ * Title:ItemsHandlerController2
  * <p>
- * Description:实现controller业务的接口
+ * Description:实现注解controller
  * <p>
  * @author Kor_Zhang
  * @date 2017年9月5日 上午10:10:59
  * @version 1.0
  */
-public class ItemsHandlerController0 implements Controller{
+//标志其是一个控制器
+@Controller
+public class ItemsHandlerController2 {
 
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	//查询商品列表
+	//一般和方法名同名,方便维护
+	//action可加可不加
+	@RequestMapping("/selectItems2")
+	public ModelAndView selectItems(){
 		/**
 		 * 模拟处理数据
 		 */
@@ -41,8 +43,7 @@ public class ItemsHandlerController0 implements Controller{
 			it.setQuantity(index);
 			items.add(it);
 		}
-		
-		
+
 		ModelAndView mav = new ModelAndView();
 		//指定数据
 		mav.addObject("items",items);
@@ -52,6 +53,10 @@ public class ItemsHandlerController0 implements Controller{
 		
 		
 		return mav;
+
 	}
+	
+
+	
 
 }
